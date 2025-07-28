@@ -28,16 +28,21 @@ jobs:
     - name: Build Kernel
       uses: ./
       with:
-          kernel-url: https://github.com/AcmeUI-Devices/android_kernel_xiaomi_cas
-          kernel-dir: msm-4.19
-          kernel-branch: taffy
-          config: cas_defconfig
+          kernel-url: https://github.com/VDavid003/universal7885_treeui_kernel
+#          kernel-dir: 
+          kernel-branch: treeui_treble
+          config: exynos7885-jackpotlte_defconfig
           arch: arm64
-          aosp-gcc: true
-          aosp-clang: true
+ #         aosp-gcc: true
+ #         aosp-clang: true
+          other-gcc64-url: https://github.com/ravindu644/Android-Kernel-Tutorials/releases/download/toolchains/aarch64-linux-android-4.9.tar.gz
+          other-gcc32-url: https://github.com/ravindu644/Android-Kernel-Tutorials/releases/download/toolchains/arm-gnu-toolchain-14.2.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+          other-clang-url: https://github.com/ravindu644/Android-Kernel-Tutorials/releases/download/toolchains/clang-r353983c.tar.gz
           ksu: true
-          ksu-version: main
-          android-version: 12
-          aosp-clang-version: r383902
+          ksu-version: v0.9.4
+#          nethunter: true
+#          nethunter-patch: true
+          android-version: 11
+#          aosp-clang-version: r353983c
           disable-lto: true
           anykernel3: true
