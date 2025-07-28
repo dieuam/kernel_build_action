@@ -387,6 +387,7 @@ runs:
 
          echo "::group:: Building Kernel with selected cross compiler"
          mkdir out -p -v
+         export ANDROID_MAJOR_VERSION=p
          COMMAND="make -j$(nproc --all) ${{ inputs.config }} ARCH=${{ inputs.arch }} all ${{ inputs.extra-cmd }} O=out"
 
          if [ -d "$HOME/clang/bin" ]; then
