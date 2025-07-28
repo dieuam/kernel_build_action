@@ -13,11 +13,11 @@ jobs:
 
     steps:
       - name: Build Kernel
-        uses: dieuam/kernel_build_action@A8
+        uses: dabao1955/kernel_build_action@main
         with:
-          kernel-url: https://github.com/dieuam/kernel_4.14
-          kernel-dir: false
-          kernel-branch: main
+          kernel-url: https://github.com/VDavid003/universal7885_treeui_kernel
+#          kernel-dir: false
+          kernel-branch: treeui_treble
           config: exynos7885-jackpotlte_defconfig
           arch: arm64
 #          aosp-gcc: true
