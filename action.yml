@@ -467,9 +467,9 @@ runs:
                 find ../out/arch/${{ inputs.arch }}/boot -name "Image" ! -name "*-*" -exec cp -v {} kernel \;
             else
                 if ls dtb >/dev/null ; then
-                    find ../arch/${{ inputs.arch }}/boot -name "Image.*-dtb" ! -name "*-*" -exec cp -v {} kernel \;
+                    find ../out/arch/${{ inputs.arch }}/boot -name "Image.*-dtb" ! -name "*-*" -exec cp -v {} kernel \;
                 else
-                    find ../arch/${{ inputs.arch }}/boot -name "Image.*" ! -name "*-*" -exec cp -v {} kernel \;
+                    find ../out/arch/${{ inputs.arch }}/boot -name "Image.*" ! -name "*-*" -exec cp -v {} kernel \;
                 fi
             fi
             ./magiskboot repack boot.img
