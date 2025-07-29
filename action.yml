@@ -20,7 +20,7 @@ inputs:
     required: false
   kernel-dir:
     required: false
-    default: false
+    default: 
   vendor-dir:
     required: false
     default: vendor
@@ -386,10 +386,10 @@ runs:
          fi
 
          echo "::group:: Building Kernel with selected cross compiler"
-
+         mkdir out -p -v
          export PLATFORM_VERSION=11
          export ANDROID_MAJOR_VERSION=r
-         COMMAND="make -j$(nproc --all) ${{ inputs.config }} ARCH=${{ inputs.arch }} all ${{ inputs.extra-cmd }}"
+         COMMAND="make -j$(nproc --all) ${{ inputs.config }} ARCH=${{ inputs.arch }} all ${{ inputs.extra-cmd }} O=out KCFLAGS=-w"
 
          if [ -d "$HOME/clang/bin" ]; then
               CMD_PATH="$HOME/clang/bin"
@@ -489,12 +489,12 @@ runs:
                 sed -i 's/IS_SLOT_DEVICE=0;/IS_SLOT_DEVICE=auto;/g' AnyKernel3/anykernel.sh
             fi
 
-            if [ -f /arch/${{ inputs.arch }}/boot/Image.*-dtb ]; then
-                cp /arch/${{ inputs.arch }}/boot/Image.*-dtb AnyKernel3/ -rv
-            elif [ -f /arch/${{ inputs.arch }}/boot/Image.* ]; then
-                cp /arch/${{ inputs.arch }}/boot/Image.* AnyKernel3/ -rv
+            if [ -f out/arch/${{ inputs.arch }}/boot/Image.*-dtb ]; then
+                cp out/arch/${{ inputs.arch }}/boot/Image.*-dtb AnyKernel3/ -rv
+            elif [ -f out/arch/${{ inputs.arch }}/boot/Image.* ]; then
+                cp out/arch/${{ inputs.arch }}/boot/Image.* AnyKernel3/ -rv
             else
-                cp /arch/${{ inputs.arch }}/boot/Image AnyKernel3/ -rv
+                cp out/arch/${{ inputs.arch }}/boot/Image AnyKernel3/ -rv
             fi
 
             test -f out/arch/${{ inputs.arch }}/boot/dtbo.img && cp -v out/arch/${{ inputs.arch }}/boot/dtbo.img AnyKernel3/
