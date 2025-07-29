@@ -386,8 +386,9 @@ runs:
          fi
 
          echo "::group:: Building Kernel with selected cross compiler"
-         
-         export ANDROID_MAJOR_VERSION=p
+
+         export PLATFORM_VERSION=11
+         export ANDROID_MAJOR_VERSION=r
          COMMAND="make -j$(nproc --all) ${{ inputs.config }} ARCH=${{ inputs.arch }} all ${{ inputs.extra-cmd }}"
 
          if [ -d "$HOME/clang/bin" ]; then
@@ -440,7 +441,7 @@ runs:
          fi
 
          # setup additional commands
-         COMMAND+=" PATH=${CMD_PATH}:${PATH} CROSS_COMPILE=${CMD_CROSS_COMPILE} CROSS_COMPILE_ARM32=${CMD_CROSS_COMPILE_ARM32} CLANG_TRIPLE=${CMD_CLANG_TRIPLE} CC=${CMD_CC} ANDROID_MAJOR_VERSION=${ANDROID_MAJOR_VERSION}"
+         COMMAND+=" PATH=${CMD_PATH}:${PATH} CROSS_COMPILE=${CMD_CROSS_COMPILE} CROSS_COMPILE_ARM32=${CMD_CROSS_COMPILE_ARM32} CLANG_TRIPLE=${CMD_CLANG_TRIPLE} CC=${CMD_CC} ANDROID_MAJOR_VERSION=${ANDROID_MAJOR_VERSION} PLATFORM_VERSION=${PLATFORM_VERSION}"
 
          # run the command
          ${COMMAND}
