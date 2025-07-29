@@ -20,7 +20,7 @@ inputs:
     required: false
   kernel-dir:
     required: false
-    default: kernel
+    default: false
   vendor-dir:
     required: false
     default: vendor
