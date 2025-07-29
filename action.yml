@@ -440,7 +440,7 @@ runs:
          fi
 
          # setup additional commands
-         COMMAND+=" PATH=${CMD_PATH}:${PATH} CROSS_COMPILE=${CMD_CROSS_COMPILE} CROSS_COMPILE_ARM32=${CMD_CROSS_COMPILE_ARM32} CLANG_TRIPLE=${CMD_CLANG_TRIPLE} CC=${CMD_CC}"
+         COMMAND+=" PATH=${CMD_PATH}:${PATH} CROSS_COMPILE=${CMD_CROSS_COMPILE} CROSS_COMPILE_ARM32=${CMD_CROSS_COMPILE_ARM32} CLANG_TRIPLE=${CMD_CLANG_TRIPLE} CC=${CMD_CC} ANDROID_MAJOR_VERSION=${ANDROID_MAJOR_VERSION}"
 
          # run the command
          ${COMMAND}
@@ -466,9 +466,9 @@ runs:
                 find ../out/arch/${{ inputs.arch }}/boot -name "Image" ! -name "*-*" -exec cp -v {} kernel \;
             else
                 if ls dtb >/dev/null ; then
-                    find ../out/arch/${{ inputs.arch }}/boot -name "Image.*-dtb" ! -name "*-*" -exec cp -v {} kernel \;
+                    find ../arch/${{ inputs.arch }}/boot -name "Image.*-dtb" ! -name "*-*" -exec cp -v {} kernel \;
                 else
-                    find ../out/arch/${{ inputs.arch }}/boot -name "Image.*" ! -name "*-*" -exec cp -v {} kernel \;
+                    find ../arch/${{ inputs.arch }}/boot -name "Image.*" ! -name "*-*" -exec cp -v {} kernel \;
                 fi
             fi
             ./magiskboot repack boot.img
@@ -488,12 +488,12 @@ runs:
                 sed -i 's/IS_SLOT_DEVICE=0;/IS_SLOT_DEVICE=auto;/g' AnyKernel3/anykernel.sh
             fi
 
-            if [ -f out/arch/${{ inputs.arch }}/boot/Image.*-dtb ]; then
-                cp out/arch/${{ inputs.arch }}/boot/Image.*-dtb AnyKernel3/ -rv
-            elif [ -f out/arch/${{ inputs.arch }}/boot/Image.* ]; then
-                cp out/arch/${{ inputs.arch }}/boot/Image.* AnyKernel3/ -rv
+            if [ -f /arch/${{ inputs.arch }}/boot/Image.*-dtb ]; then
+                cp /arch/${{ inputs.arch }}/boot/Image.*-dtb AnyKernel3/ -rv
+            elif [ -f /arch/${{ inputs.arch }}/boot/Image.* ]; then
+                cp /arch/${{ inputs.arch }}/boot/Image.* AnyKernel3/ -rv
             else
-                cp out/arch/${{ inputs.arch }}/boot/Image AnyKernel3/ -rv
+                cp /arch/${{ inputs.arch }}/boot/Image AnyKernel3/ -rv
             fi
 
             test -f out/arch/${{ inputs.arch }}/boot/dtbo.img && cp -v out/arch/${{ inputs.arch }}/boot/dtbo.img AnyKernel3/
