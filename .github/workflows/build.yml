@@ -17,7 +17,7 @@ jobs:
         with:
           kernel-url: https://github.com/VDavid003/universal7885_treeui_kernel
 #          kernel-dir: false
-          kernel-branch: treeui_treble
+          kernel-branch: 4.14_jackpotlte
           config: exynos7885-jackpotlte_defconfig
           arch: arm64
 #          aosp-gcc: true
