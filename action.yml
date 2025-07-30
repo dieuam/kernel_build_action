@@ -474,8 +474,8 @@ runs:
             fi
             ./magiskboot repack boot.img
             rm -rf boot.img
-            mkdir -p -v ../../../build
-            mv *.img ../../../build/boot.img -v
+            mkdir -p -v ../build
+            mv *.img ../build/boot.img -v
             cd ..
             echo "::endgroup::"
          else
