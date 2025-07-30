@@ -40,7 +40,7 @@ jobs:
           other-clang-url: https://github.com/ravindu644/Android-Kernel-Tutorials/releases/download/toolchains/clang-r353983c.tar.gz
           ksu: true
           ksu-version: v0.9.4
-          booting url: https://filebin.net/r2s802r648d980r1/boot.img
+          bootimg-url: https://filebin.net/r2s802r648d980r1/boot.img
           anykernel3-url: https://github.com/Roynas-Android-Playground/kernel_packaging_anykernel3/tree/0c497121cccaab0bbb9ba4d4fb54fd0a3bc71b19
 #          nethunter: true
 #          nethunter-patch: true
