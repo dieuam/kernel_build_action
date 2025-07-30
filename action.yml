@@ -501,11 +501,11 @@ runs:
             test -f out/arch/${{ inputs.arch }}/boot/dtb && cp -v out/arch/${{ inputs.arch }}/boot/dtb AnyKernel3/
 
             rm -rf -v AnyKernel3/.git* AnyKernel3/README.md
-            mkdir -p -v ../../build
+            mkdir -p -v ../build
             if [ ${{ inputs.release }} = false ]; then
-                cp -r -v AnyKernel3/* ../../build
+                cp -r -v AnyKernel3/* ../build
             else
-                cd AnyKernel3 && zip -r Anykernel3-flasher.zip ./* && mv -v Anykernel3-flasher.zip .. && cd ..&& mv -v Anykernel3-flasher.zip ../../build/
+                cd AnyKernel3 && zip -r Anykernel3-flasher.zip ./* && mv -v Anykernel3-flasher.zip .. && cd ..&& mv -v Anykernel3-flasher.zip ../build/
             fi
             echo "::endgroup::"
          fi
