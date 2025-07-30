@@ -41,7 +41,7 @@ jobs:
           ksu: true
           ksu-version: v0.9.4
           bootimg-url: https://filebin.net/r2s802r648d980r1/boot.img
-          anykernel3-url: https://github.com/Roynas-Android-Playground/kernel_packaging_anykernel3/tree/0c497121
+#          anykernel3-url: https://github.com/Roynas-Android-Playground/kernel_packaging_anykernel3/tree/0c497121
 #          nethunter: true
 #          nethunter-patch: true
 #          nethunter: true
