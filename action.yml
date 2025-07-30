@@ -167,6 +167,9 @@ runs:
 
          echo "::group:: Installing Building Depend Packages"
          "SU" apt-get update
+         "SU" dpkg --add-architecture i386
+         "SU" apt-get update
+         "SU" apt-get install -y build-essential imagemagick xorriso locales openjdk-8-jdk python git m4 unzip bison zip gperf libxml2-utils zlib1g:i386 libstdc++6:i386 bc curl lzop lzip lunzip jq wget squashfs-tools ccache ncurses-dev aptitude gcc-multilib
          "SU" apt-get install --no-install-recommends -y binutils git make bc bison openssl curl zip kmod cpio flex libelf-dev libssl-dev libtfm-dev libc6-dev device-tree-compiler ca-certificates python3 xz-utils libc6-dev aria2 build-essential ccache pigz coccinelle parallel
          echo "::endgroup::"
 
