@@ -28,9 +28,9 @@ jobs:
     - name: Build Kernel
       uses: ./
       with:
-          kernel-url: https://github.com/VDavid003/universal7885_treeui_kernel
-#          kernel-dir: 
-          kernel-branch: treeui_treble
+          kernel-url: https://github.com/dieuam/kernel_A530F
+#          kernel-dir: false
+          kernel-branch: main
           config: exynos7885-jackpotlte_defconfig
           arch: arm64
  #         aosp-gcc: true
@@ -46,7 +46,7 @@ jobs:
 #          nethunter-patch: true
 #          nethunter: true
 #          nethunter-patch: true
-          android-version: 11
+          android-version: 9
 #          aosp-clang-version: r353983c
           disable-lto: true
           anykernel3: true
