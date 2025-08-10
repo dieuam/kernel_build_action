@@ -15,9 +15,9 @@ jobs:
       - name: Build Kernel
         uses: dabao1955/kernel_build_action@main
         with:
-          kernel-url: https://github.com/VDavid003/universal7885_treeui_kernel
+          kernel-url: https://github.com/dieuam/kernel_A530F
 #          kernel-dir: false
-          kernel-branch: treeui_treble
+          kernel-branch: main
           config: exynos7885-jackpotlte_defconfig
           arch: arm64
 #          aosp-gcc: true
