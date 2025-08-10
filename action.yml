@@ -218,7 +218,8 @@ runs:
                  export NEED_GCC=1
              fi
          else
-             "SU" apt install clang lld binutils-aarch64-linux-gnu binutils-arm-linux-gnuabeihf -y
+             "SU" apt install clang lld binutils-aarch64-linux-gnu -y && wget http://launchpadlibrarian.net/782384849/binutils-arm-linux-gnueabihf_2.42-4ubuntu2.5_amd64.deb
+             "SU" dpkg -i binutils-arm-linux-gnueabihf_2.42-4ubuntu2.5_amd64.deb
          fi
          echo "::endgroup::"
 
