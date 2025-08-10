@@ -498,8 +498,8 @@ runs:
                 cp arch/${{ inputs.arch }}/boot/Image AnyKernel3/ -rv
             fi
 
-            test -f arch/${{ inputs.arch }}/boot/dtbo.img && cp -v out/arch/${{ inputs.arch }}/boot/dtbo.img AnyKernel3/
-            test -f arch/${{ inputs.arch }}/boot/dtb && cp -v out/arch/${{ inputs.arch }}/boot/dtb AnyKernel3/
+            test -f arch/${{ inputs.arch }}/boot/dtbo.img && cp -v arch/${{ inputs.arch }}/boot/dtbo.img AnyKernel3/
+            test -f arch/${{ inputs.arch }}/boot/dtb && cp -v arch/${{ inputs.arch }}/boot/dtb AnyKernel3/
 
             rm -rf -v AnyKernel3/.git* AnyKernel3/README.md
             mkdir -p -v ../build
