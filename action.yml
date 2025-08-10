@@ -390,9 +390,8 @@ runs:
 
          echo "::group:: Building Kernel with selected cross compiler"
          mkdir out -p -v
-         export PLATFORM_VERSION=11
-         export ANDROID_MAJOR_VERSION=r
-         COMMAND="make -j$(nproc --all) ${{ inputs.config }} ARCH=${{ inputs.arch }} all ${{ inputs.extra-cmd }} O=out KCFLAGS=-w"
+         export ANDROID_MAJOR_VERSION=p
+         COMMAND="make -j$(nproc --all) ${{ inputs.config }} ARCH=${{ inputs.arch }} all ${{ inputs.extra-cmd }}"
 
          if [ -d "$HOME/clang/bin" ]; then
               CMD_PATH="$HOME/clang/bin"
@@ -444,7 +443,7 @@ runs:
          fi
 
          # setup additional commands
-         COMMAND+=" PATH=${CMD_PATH}:${PATH} CROSS_COMPILE=${CMD_CROSS_COMPILE} CROSS_COMPILE_ARM32=${CMD_CROSS_COMPILE_ARM32} CLANG_TRIPLE=${CMD_CLANG_TRIPLE} CC=${CMD_CC} ANDROID_MAJOR_VERSION=${ANDROID_MAJOR_VERSION} PLATFORM_VERSION=${PLATFORM_VERSION}"
+         COMMAND+=" PATH=${CMD_PATH}:${PATH} CROSS_COMPILE=${CMD_CROSS_COMPILE} CROSS_COMPILE_ARM32=${CMD_CROSS_COMPILE_ARM32} CLANG_TRIPLE=${CMD_CLANG_TRIPLE} CC=${CMD_CC} ANDROID_MAJOR_VERSION=${ANDROID_MAJOR_VERSION}"
 
          # run the command
          ${COMMAND}
@@ -467,12 +466,12 @@ runs:
             rm -rf -v kernel
             export FMT=$(cat nohup.out | grep "KERNEL_FMT" | awk '{gsub("\\[", "", $2); gsub("\\]", "", $2); print $2}')
             if [ "$FMT" = "raw" ] ; then
-                find ../out/arch/${{ inputs.arch }}/boot -name "Image" ! -name "*-*" -exec cp -v {} kernel \;
+                find ../arch/${{ inputs.arch }}/boot -name "Image" ! -name "*-*" -exec cp -v {} kernel \;
             else
                 if ls dtb >/dev/null ; then
-                    find ../out/arch/${{ inputs.arch }}/boot -name "Image.*-dtb" ! -name "*-*" -exec cp -v {} kernel \;
+                    find ../arch/${{ inputs.arch }}/boot -name "Image.*-dtb" ! -name "*-*" -exec cp -v {} kernel \;
                 else
-                    find ../out/arch/${{ inputs.arch }}/boot -name "Image.*" ! -name "*-*" -exec cp -v {} kernel \;
+                    find ../arch/${{ inputs.arch }}/boot -name "Image.*" ! -name "*-*" -exec cp -v {} kernel \;
                 fi
             fi
             ./magiskboot repack boot.img
@@ -492,16 +491,16 @@ runs:
                 sed -i 's/IS_SLOT_DEVICE=0;/IS_SLOT_DEVICE=auto;/g' AnyKernel3/anykernel.sh
             fi
 
-            if [ -f out/arch/${{ inputs.arch }}/boot/Image.*-dtb ]; then
-                cp out/arch/${{ inputs.arch }}/boot/Image.*-dtb AnyKernel3/ -rv
-            elif [ -f out/arch/${{ inputs.arch }}/boot/Image.* ]; then
-                cp out/arch/${{ inputs.arch }}/boot/Image.* AnyKernel3/ -rv
+            if [ -f arch/${{ inputs.arch }}/boot/Image.*-dtb ]; then
+                cp arch/${{ inputs.arch }}/boot/Image.*-dtb AnyKernel3/ -rv
+            elif [ -f arch/${{ inputs.arch }}/boot/Image.* ]; then
+                cp arch/${{ inputs.arch }}/boot/Image.* AnyKernel3/ -rv
             else
-                cp out/arch/${{ inputs.arch }}/boot/Image AnyKernel3/ -rv
+                cp arch/${{ inputs.arch }}/boot/Image AnyKernel3/ -rv
             fi
 
-            test -f out/arch/${{ inputs.arch }}/boot/dtbo.img && cp -v out/arch/${{ inputs.arch }}/boot/dtbo.img AnyKernel3/
-            test -f out/arch/${{ inputs.arch }}/boot/dtb && cp -v out/arch/${{ inputs.arch }}/boot/dtb AnyKernel3/
+            test -f arch/${{ inputs.arch }}/boot/dtbo.img && cp -v out/arch/${{ inputs.arch }}/boot/dtbo.img AnyKernel3/
+            test -f arch/${{ inputs.arch }}/boot/dtb && cp -v out/arch/${{ inputs.arch }}/boot/dtb AnyKernel3/
 
             rm -rf -v AnyKernel3/.git* AnyKernel3/README.md
             mkdir -p -v ../build
