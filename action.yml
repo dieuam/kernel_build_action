@@ -396,8 +396,8 @@ runs:
          if [ -d "$HOME/clang/bin" ]; then
               CMD_PATH="$HOME/clang/bin"
               CMD_CC="clang"
-              if [ -d "$HOME/gcc-64/bin" ] || [ -d "$HOME/gcc-32/bin" ]; then
-                  CMD_CROSS_COMPILE="$HOME/gcc-64/bin/${GCC64}-"
+              if [ -d "$HOME/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin" ] || [ -d "$HOME/gcc-32/bin" ]; then
+                  CMD_CROSS_COMPILE="$HOME/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/${GCC64}-"
                   CMD_CROSS_COMPILE="aarch64-linux-android-"
               fi
          elif [ -d "$HOME/gcc-64/bin" ] || [ -d "$HOME/gcc-32/bin" ]; then
