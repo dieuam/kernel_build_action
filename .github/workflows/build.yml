@@ -31,7 +31,7 @@ jobs:
 #          anykernel3-url: https://github.com/Roynas-Android-Playground/kernel_packaging_anykernel3/tree/0c497121
 #          nethunter: true
 #          nethunter-patch: true
-          android-version: p
+#          android-version: p
 #          aosp-clang-version: r353983c
           disable-lto: true
           anykernel3: true
