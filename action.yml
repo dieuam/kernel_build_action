@@ -400,10 +400,10 @@ runs:
                   CMD_CROSS_COMPILE="$HOME/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/${GCC64}-"
                   CMD_CROSS_COMPILE="aarch64-linux-android-"
               fi
-         elif [ -d "$HOME/gcc-64/bin" ] || [ -d "$HOME/gcc-32/bin" ]; then
-              CMD_PATH="$HOME/gcc-64/bin:$HOME/gcc-32/bin"
+         elif [ -d "$HOME/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin" ] || [ -d "$HOME/gcc-32/bin" ]; then
+              CMD_PATH="$HOME/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin:$HOME/gcc-32/bin"
               if [ -n "${GCC64}" ]; then
-                  CMD_CC="$HOME/gcc-64/bin/${GCC64}-gcc"
+                  CMD_CC="$HOME/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/${GCC64}-gcc"
               else
                   CMD_CC="$HOME/gcc-32/bin/${GCC32}-gcc"
               fi
