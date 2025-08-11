@@ -46,7 +46,7 @@ jobs:
 #          nethunter-patch: true
 #          nethunter: true
 #          nethunter-patch: true
-          android-version: 9
+          android-version: p
 #          aosp-clang-version: r353983c
           disable-lto: true
           anykernel3: true
